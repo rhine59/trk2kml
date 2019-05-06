@@ -2,7 +2,7 @@
 
 ## Summary
 
-A simple utility to take track data from the excellent PilotAware device https://pilotaware.com and extract data from the GGPGA records for use in Google Earth projections.
+A simple utility to take track data from the excellent PilotAware device https://pilotaware.com and extract data from the GGPGA records for use in Google Earth projections. PilotAware fora are to be found [Here](http://forum.pilotaware.com/index.php).
 
 Allows you to show where you have been using Google Earth to present the infromation from your PilotAware recorded route as in the example below.
 
