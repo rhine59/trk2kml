@@ -1,4 +1,4 @@
-# A utility to convert PilotAware .trk files to Google Earth .kml files.
+# Convert PilotAware .trk files to Google Earth .kml files.
 
 ## Summary
 
