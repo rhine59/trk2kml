@@ -88,11 +88,58 @@ Early days, and there are some short cuts which need to be sorted.
 Here is a sample of the records from the PilotAware log that I am using to create the .kml file. I think that they come from the FLARM protocol definitions, but the record details are documented in the links below.
 
 ```
-$GPGGA,131911,5356.177,N,00251.218,W,1,04,7.0,7.2,M,49.2,M,,*5A
-$GPGGA,131912,5356.178,N,00251.219,W,1,04,7.0,7.9,M,49.2,M,,*5C
-$GPGGA,131913,5356.179,N,00251.219,W,1,04,7.0,8.0,M,49.2,M,,*5A
+rhine:samples rhine$ cat 2018-07-06_15-25.trk|grep -i gga
+$GPGGA,152553,5356.179,N,00251.234,W,1,08,0.9,8.3,M,49.2,M,,*59
+$GPGGA,152554,5356.179,N,00251.234,W,1,08,0.9,8.3,M,49.2,M,,*5E
+$GPGGA,152555,5356.179,N,00251.234,W,1,08,0.9,8.2,M,49.2,M,,*5E
+$GPGGA,152556,5356.179,N,00251.234,W,1,08,0.9,8.2,M,49.2,M,,*5D
+$GPGGA,152557,5356.179,N,00251.234,W,1,08,0.9,8.1,M,49.2,M,,*5F
 
 ```
+The KML generated from the above sample TRK file ...
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+    <name>PilotAware 2018-07-06_15-25.trk</name>
+    <description>KML created by trk2kml.pl from the 2018-07-06_15-25.trk PilotAware track file. See https://github.com/rhine59/trk2kml
+    </description>
+    <Style id="yellowLineGreenPoly">
+      <LineStyle>
+        <color>7f00ffff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7f00ff00</color>
+      </PolyStyle>
+    </Style>
+    <Placemark>
+      <name>PilotAware</name>
+      <description>Height in meters AMSL</description>
+      <styleUrl>#yellowLineGreenPoly</styleUrl>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <altitudeMode>absolute</altitudeMode>
+        <coordinates>
+          -2.51234,53.56179,8.3
+          -2.51234,53.56179,8.3
+          -2.51234,53.56179,8.2
+          -2.51234,53.56179,8.2
+          -2.51234,53.56179,8.1
+
+< SOME LINES MISSING HERE >
+
+          </coordinates>
+       </LineString>
+     </Placemark>
+  </Document>
+  </kml>
+
+```
+
+See how `-2.51234,53.56179,8.3` is derived from `5356.179,N,00251.234,W ... 8.3,M`
 
 ## A definition of the GPGGA record contents.
 
@@ -131,5 +178,6 @@ Where:
      *47          the checksum data, always begins with *`
 
 ```
+Suggestions and comments always welcome
 
-Thanks, Richard Hine - UK
+Thanks, Richard Hine - UK - rhine59@gmail.com
