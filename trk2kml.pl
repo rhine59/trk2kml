@@ -1,4 +1,11 @@
 #!/usr/bin/perl
+# 
+#	trk2kml		May 2019, Richard Hine - rhine59@gmail.com
+#
+#		Parse a PilotAware .trk file for the NMEA GPGGA sentences and use the latitide, longitude and altitude to create
+#		a .kml file for importing into Google Earth
+#		Note that the GPRMC sentence also contains 'speed over the groud in knots' - see https://www.gpsinformation.org/dale/nmea.htm#nmea
+#		
 use File::Basename;
 use Cwd qw(cwd);
 my $directory = cwd;
@@ -78,7 +85,6 @@ sub process_track_file {
                 		$longitude = substr($long,0,3) . "." . substr($long,3,7);
 				$longitude =~s/^0*//;
 			}
-
                 	print KML "          $longitude" . "," . "$latitude" . "," . "$alt" . "\n";
         	}
 	}
