@@ -28,7 +28,7 @@ sub process_track_file {
 	print KML "\<kml xmlns=\"http://www.opengis.net/kml/2.2\"\>" . "\n";
 	print KML "\<Document\>" . "\n";
 	print KML "    \<name\>PilotAware $trkfile\</name\>" . "\n";
-	print KML "    \<description\>KML created by trk2kml.pl from the $trkfile Pilot Aware .trk file. See https://github.com/rhine59/trk2kml" . "\n";
+	print KML "    \<description\>KML created by trk2kml.pl from the $trkfile PilotAware track file. See https://github.com/rhine59/trk2kml" . "\n";
 	print KML "    \</description\>" . "\n";
 	print KML "    \<Style id=\"yellowLineGreenPoly\"\>" . "\n";
 	print KML "      \<LineStyle\>" . "\n";
@@ -55,7 +55,31 @@ sub process_track_file {
         	if ($id eq "\$GPGGA") {
                 	$lat =~ tr/.//d;
                 	$long =~ tr/.//d;
-                	print KML "          " . "-" . substr($long,0,3) . "." . substr($long,3,7) . "," . substr($lat,0,2) . "." . substr($lat,2,5) . "," . $alt . "\n";
+			# if LAT is degrees South, then use a negative number
+			if ($ns eq "S") {
+				# Southern hemisphere - make latitude negative
+				$latitude = substr($lat,0,2) . "." . substr($lat,2,5);
+				$latitide =~s/^0*//;
+				$latitude = "-" . $latitude;
+			} else {
+				# Northern hemisphere - make latitude positive
+				$latitude = substr($lat,0,2) . "." . substr($lat,2,5);
+				$latitide =~s/^0*//;
+			}
+
+			# if LONG is degrees West, then use a negative number
+			if ($we eq "W") {
+				# West of Greenwich - remove the zeros and make longitude negative
+                		$longitude = substr($long,0,3) . "." . substr($long,3,7);
+				$longitude =~s/^0*//;
+                		$longitude = "-" . $longitude;
+			} else {
+				# East of Greenwich - remove the zeros and make longitude positive
+                		$longitude = substr($long,0,3) . "." . substr($long,3,7);
+				$longitude =~s/^0*//;
+			}
+
+                	print KML "          $longitude" . "," . "$latitude" . "," . "$alt" . "\n";
         	}
 	}
 
@@ -67,7 +91,7 @@ sub process_track_file {
 	print KML "\</Document\>" . "\n";
 	print KML "\</kml\>" . "\n";
 
-	close KML;
+	close(KML);
 	return $?;
 }
 
