@@ -94,4 +94,3 @@ sub process_track_file {
 	close(KML);
 	return $?;
 }
-
