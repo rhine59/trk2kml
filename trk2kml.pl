@@ -40,8 +40,8 @@ sub process_track_file {
 	print KML "      \</PolyStyle\>" . "\n";
 	print KML "    \</Style\>" . "\n";
 	print KML "    \<Placemark\>" . "\n";
-	print KML "      \<name\>Absolute Extruded\</name\>" . "\n";
-	print KML "      \<description\>Transparent green wall with yellow outlines\</description\>" . "\n";
+	print KML "      \<name\>PilotAware\</name\>" . "\n";
+	print KML "      \<description\>Height in meters AMSL\</description\>" . "\n";
 	print KML "      \<styleUrl\>#yellowLineGreenPoly\</styleUrl\>" . "\n";
 	print KML "      \<LineString\>" . "\n";
 	print KML "        \<extrude\>1\</extrude\>" . "\n";
