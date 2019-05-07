@@ -14,8 +14,8 @@
       </PolyStyle>
     </Style>
     <Placemark>
-      <name>Absolute Extruded</name>
-      <description>Transparent green wall with yellow outlines</description>
+      <name>PilotAware</name>
+      <description>Height in meters AMSL</description>
       <styleUrl>#yellowLineGreenPoly</styleUrl>
       <LineString>
         <extrude>1</extrude>
